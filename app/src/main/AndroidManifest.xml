@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015-2016 Filippo Engidashet. All Rights Reserved.
+  ~ <p>
+  ~  Save to the extent permitted by law, you may not use, copy, modify,
+  ~  distribute or create derivative works of this material or any part
+  ~  of it without the prior written consent of Filippo Engidashet.
+  ~  <p>
+  ~  The above copyright notice and this permission notice shall be included in
+  ~  all copies or substantial portions of the Software.
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.dalol.retrofit2_restapidemo" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+        <activity android:name=".ui.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DetailActivity" />
+    </application>
+
+</manifest>
