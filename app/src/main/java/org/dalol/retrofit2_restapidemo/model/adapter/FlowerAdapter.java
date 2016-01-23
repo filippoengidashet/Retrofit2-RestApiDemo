@@ -57,7 +57,11 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
         holder.mName.setText(currFlower.getName());
         holder.mPrice.setText("$" + Double.toString(currFlower.getPrice()));
 
-        Picasso.with(holder.itemView.getContext()).load("http://services.hanselandpetal.com/photos/" + currFlower.getPhoto()).into(holder.mPhoto);
+        if (currFlower.isFromDatabase()) {
+            holder.mPhoto.setImageBitmap(currFlower.getPicture());
+        } else {
+            Picasso.with(holder.itemView.getContext()).load("http://services.hanselandpetal.com/photos/" + currFlower.getPhoto()).into(holder.mPhoto);
+        }
     }
 
     @Override
@@ -66,7 +70,6 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
     }
 
     public void addFlower(Flower flower) {
-        Log.d(TAG, flower.getPhoto());
         mFlowers.add(flower);
         notifyDataSetChanged();
     }
@@ -77,6 +80,11 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
      */
     public Flower getSelectedFlower(int position) {
         return mFlowers.get(position);
+    }
+
+    public void reset() {
+        mFlowers.clear();
+        notifyDataSetChanged();
     }
 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {

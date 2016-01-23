@@ -23,7 +23,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stop Downloading" />
+        android:text="Reload"
+        android:id="@+id/reload"/>
 
 
     <android.support.v7.widget.RecyclerView

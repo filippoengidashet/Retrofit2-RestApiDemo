@@ -11,8 +11,13 @@
 
 package org.dalol.retrofit2_restapidemo.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import com.google.gson.annotations.Expose;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -21,6 +26,9 @@ import java.io.Serializable;
  * @date today
  */
 public class Flower implements Serializable {
+
+    private static final long serialVersionUID = 111696345129311948L;
+    public byte[] imageByteArray;
 
     @Expose
     private String category;
@@ -39,6 +47,10 @@ public class Flower implements Serializable {
 
     @Expose
     private int productId;
+
+    private Bitmap picture;
+
+    private boolean isFromDatabase;
 
     public String getCategory() {
         return category;
@@ -86,5 +98,55 @@ public class Flower implements Serializable {
 
     public void setProductId(int productId) {
         this.productId = productId;
+    }
+
+    public void setPicture(Bitmap picture) {
+        this.picture = picture;
+    }
+
+    public Bitmap getPicture() {
+        return picture;
+    }
+
+    public boolean isFromDatabase() {
+        return isFromDatabase;
+    }
+
+    public void setFromDatabase(boolean fromDatabase) {
+        isFromDatabase = fromDatabase;
+    }
+
+
+    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+
+        out.writeObject(category);
+        out.writeObject(price);
+        out.writeObject(instructions);
+        out.writeObject(photo);
+        out.writeObject(name);
+        out.writeObject(productId);
+
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        picture.compress(Bitmap.CompressFormat.PNG, 0, byteStream);
+        byte bitmapBytes[] = byteStream.toByteArray();
+        out.write(bitmapBytes, 0, bitmapBytes.length);
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+
+        category = (String) in.readObject();
+        price = (Double) in.readObject();
+        instructions = (String) in.readObject();
+        photo = (String) in.readObject();
+        name = (String) in.readObject();
+        productId = (Integer) in.readObject();
+
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        int b;
+        while ((b = in.read()) != -1)
+            byteStream.write(b);
+        byte bitmapBytes[] = byteStream.toByteArray();
+        picture = BitmapFactory.decodeByteArray(bitmapBytes, 0,
+                bitmapBytes.length);
     }
 }
