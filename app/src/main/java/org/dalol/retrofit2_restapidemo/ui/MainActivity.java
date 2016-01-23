@@ -41,6 +41,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * @author Filippo Engidashet
+ * @version 1.0.0
+ * @date 1/22/2016
+ */
 public class MainActivity extends AppCompatActivity implements FlowerAdapter.FlowerClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();

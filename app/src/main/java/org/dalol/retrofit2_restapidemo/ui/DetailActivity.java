@@ -26,8 +26,8 @@ import org.dalol.retrofit2_restapidemo.model.helper.Constants;
 
 /**
  * @author Filippo Engidashet
- * @version 1.0
- * @date today
+ * @version 1.0.0
+ * @date 1/22/2016
  */
 public class DetailActivity extends AppCompatActivity {
 
@@ -45,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
 
         configViews();
 
-        mId.setText("" + flower.getProductId());
+        mId.setText(Integer.toString(flower.getProductId()));
         mName.setText(flower.getName());
         mCategory.setText(flower.getCategory());
         mInstruction.setText(flower.getInstructions());

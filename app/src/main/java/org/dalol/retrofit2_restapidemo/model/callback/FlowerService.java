@@ -20,8 +20,8 @@ import retrofit2.http.GET;
 
 /**
  * @author Filippo Engidashet
- * @version 1.0
- * @date today
+ * @version 1.0.0
+ * @date 1/22/2016
  */
 public interface FlowerService {
 

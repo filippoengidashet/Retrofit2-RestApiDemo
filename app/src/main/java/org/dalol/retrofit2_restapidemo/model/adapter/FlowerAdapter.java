@@ -12,7 +12,6 @@
 package org.dalol.retrofit2_restapidemo.model.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +28,8 @@ import java.util.List;
 
 /**
  * @author Filippo Engidashet
- * @version 1.0
- * @date today
+ * @version 1.0.0
+ * @date 1/22/2016
  */
 public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
 

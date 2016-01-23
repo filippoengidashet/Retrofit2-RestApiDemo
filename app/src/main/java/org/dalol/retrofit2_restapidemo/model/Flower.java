@@ -22,8 +22,8 @@ import java.io.Serializable;
 
 /**
  * @author Filippo Engidashet
- * @version 1.0
- * @date today
+ * @version 1.0.0
+ * @date 1/22/2016
  */
 public class Flower implements Serializable {
 
