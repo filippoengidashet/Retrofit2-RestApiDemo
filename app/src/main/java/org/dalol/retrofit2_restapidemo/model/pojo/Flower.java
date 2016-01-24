@@ -9,7 +9,7 @@
  *  all copies or substantial portions of the Software.
  */
 
-package org.dalol.retrofit2_restapidemo.model;
+package org.dalol.retrofit2_restapidemo.model.pojo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

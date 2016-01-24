@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.dalol.retrofit2_restapidemo.R;
-import org.dalol.retrofit2_restapidemo.model.Flower;
+import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 
 import java.util.ArrayList;
 import java.util.List;

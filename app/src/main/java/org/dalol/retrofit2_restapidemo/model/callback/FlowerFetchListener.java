@@ -11,20 +11,22 @@
 
 package org.dalol.retrofit2_restapidemo.model.callback;
 
+import android.content.Context;
+
 import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.http.GET;
-
 /**
  * @author Filippo Engidashet
  * @version 1.0.0
- * @date 1/22/2016
+ * @date 1/24/2016
  */
-public interface FlowerService {
+public interface FlowerFetchListener {
 
-    @GET("/feeds/flowers.json")
-    Call<List<Flower>> getAllFlowers();
+    void onDeliverAllFlowers(List<Flower> flowers);
+
+    void onDeliverFlower(Flower flower);
+
+    void onHideDialog();
 }

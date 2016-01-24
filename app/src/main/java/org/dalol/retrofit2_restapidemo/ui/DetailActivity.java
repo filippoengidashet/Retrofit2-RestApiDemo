@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.dalol.retrofit2_restapidemo.R;
-import org.dalol.retrofit2_restapidemo.model.Flower;
+import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 import org.dalol.retrofit2_restapidemo.model.helper.Constants;
 
 /**
@@ -49,9 +49,13 @@ public class DetailActivity extends AppCompatActivity {
         mName.setText(flower.getName());
         mCategory.setText(flower.getCategory());
         mInstruction.setText(flower.getInstructions());
+        mPrice.setText(Double.toString(flower.getPrice()));
 
-        Picasso.with(getApplicationContext()).load("http://services.hanselandpetal.com/photos/" + flower.getPhoto()).into(mPhoto);
-
+        if (flower.isFromDatabase()) {
+            mPhoto.setImageBitmap(flower.getPicture());
+        } else {
+            Picasso.with(getApplicationContext()).load("http://services.hanselandpetal.com/photos/" + flower.getPhoto()).into(mPhoto);
+        }
     }
 
     private void configViews() {

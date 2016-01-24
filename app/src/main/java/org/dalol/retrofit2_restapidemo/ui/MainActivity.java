@@ -27,10 +27,11 @@ import android.widget.Toast;
 
 import org.dalol.retrofit2_restapidemo.R;
 import org.dalol.retrofit2_restapidemo.controller.RestManager;
-import org.dalol.retrofit2_restapidemo.model.Flower;
+import org.dalol.retrofit2_restapidemo.model.callback.FlowerFetchListener;
+import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 import org.dalol.retrofit2_restapidemo.model.adapter.FlowerAdapter;
 import org.dalol.retrofit2_restapidemo.model.helper.Constants;
-import org.dalol.retrofit2_restapidemo.model.helper.FlowerDatabase;
+import org.dalol.retrofit2_restapidemo.model.database.FlowerDatabase;
 import org.dalol.retrofit2_restapidemo.model.helper.Utils;
 
 import java.io.InputStream;
@@ -46,7 +47,7 @@ import retrofit2.Response;
  * @version 1.0.0
  * @date 1/22/2016
  */
-public class MainActivity extends AppCompatActivity implements FlowerAdapter.FlowerClickListener {
+public class MainActivity extends AppCompatActivity implements FlowerAdapter.FlowerClickListener, FlowerFetchListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private RecyclerView mRecyclerView;
@@ -82,9 +83,11 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
         mDialog.setCancelable(true);
         mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mDialog.setIndeterminate(true);
-        mDialog.show();
 
         mFlowerAdapter.reset();
+
+        mDialog.show();
+
         if (getNetworkAvailablility()) {
             getFeed();
         } else {
@@ -93,15 +96,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
     }
 
     private void getFeedFromDatabase() {
-        List<Flower> flowerList = mDatabase.getFlowers();
-
-        for (int i = 0; i < flowerList.size(); i++) {
-            Flower flower = flowerList.get(i);
-            mFlowerAdapter.addFlower(flower);
-            Log.d(TAG, flower.getName() + "||" + flower.getInstructions());
-        }
-
-        mDialog.dismiss();
+        mDatabase.fetchFlowers(this);
     }
 
     private void configViews() {
@@ -163,7 +158,22 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
         return Utils.isNetworkAvailable(getApplicationContext());
     }
 
-    public class SaveIntoDatabase extends AsyncTask<Flower, Flower, Boolean> {
+    @Override
+    public void onDeliverAllFlowers(List<Flower> flowers) {
+
+    }
+
+    @Override
+    public void onDeliverFlower(Flower flower) {
+        mFlowerAdapter.addFlower(flower);
+    }
+
+    @Override
+    public void onHideDialog() {
+        mDialog.dismiss();
+    }
+
+    public class SaveIntoDatabase extends AsyncTask<Flower, Void, Void> {
 
 
         private final String TAG = SaveIntoDatabase.class.getSimpleName();
@@ -174,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
         }
 
         @Override
-        protected Boolean doInBackground(Flower... params) {
+        protected Void doInBackground(Flower... params) {
 
             Flower flower = params[0];
 
@@ -182,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
                 InputStream stream = new URL("http://services.hanselandpetal.com/photos/" + flower.getPhoto()).openStream();
                 Bitmap bitmap = BitmapFactory.decodeStream(stream);
                 flower.setPicture(bitmap);
-                publishProgress(flower);
+                mDatabase.addFlower(flower);
 
             } catch (Exception e) {
                 Log.d(TAG, e.getMessage());
@@ -190,14 +200,5 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
 
             return null;
         }
-
-        @Override
-        protected void onProgressUpdate(Flower... values) {
-            super.onProgressUpdate(values);
-            mDatabase.addFlower(values[0]);
-
-            Log.d(TAG, "Values Got " + values[0].getName());
-        }
-
     }
 }
