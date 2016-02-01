@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import org.dalol.retrofit2_restapidemo.R;
+import org.dalol.retrofit2_restapidemo.model.helper.Constants;
 import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
         if (currFlower.isFromDatabase()) {
             holder.mPhoto.setImageBitmap(currFlower.getPicture());
         } else {
-            Picasso.with(holder.itemView.getContext()).load("http://services.hanselandpetal.com/photos/" + currFlower.getPhoto()).into(holder.mPhoto);
+            Picasso.with(holder.itemView.getContext()).load(Constants.HTTP.BASE_URL + "/photos/" + currFlower.getPhoto()).into(holder.mPhoto);
         }
     }
 

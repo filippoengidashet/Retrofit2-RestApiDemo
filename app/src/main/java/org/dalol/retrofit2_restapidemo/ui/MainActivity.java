@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
             Flower flower = params[0];
 
             try {
-                InputStream stream = new URL(Constants.HTTP.BASE_URL_PIC + flower.getPhoto()).openStream();
+                InputStream stream = new URL(Constants.HTTP.BASE_URL + "/photos/" + flower.getPhoto()).openStream();
                 Bitmap bitmap = BitmapFactory.decodeStream(stream);
                 flower.setPicture(bitmap);
                 mDatabase.addFlower(flower);
