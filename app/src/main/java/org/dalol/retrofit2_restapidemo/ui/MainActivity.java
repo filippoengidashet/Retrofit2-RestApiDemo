@@ -140,7 +140,14 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
                 } else {
                     int sc = response.code();
                     switch (sc) {
-
+                        case 400:
+                            Log.e("Error 400", "Bad Request");
+                            break;
+                        case 404:
+                            Log.e("Error 404", "Not Found");
+                            break;
+                        default:
+                            Log.e("Error", "Generic Error");
                     }
                 }
                 mDialog.dismiss();
