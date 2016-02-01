@@ -45,11 +45,11 @@ public class DetailActivity extends AppCompatActivity {
 
         configViews();
 
-        mId.setText(Integer.toString(flower.getProductId()));
+        mId.setText(String.format("%d", flower.getProductId()));
         mName.setText(flower.getName());
         mCategory.setText(flower.getCategory());
         mInstruction.setText(flower.getInstructions());
-        mPrice.setText(Double.toString(flower.getPrice()));
+        mPrice.setText(String.format("$%.2f", flower.getPrice()));
 
         if (flower.isFromDatabase()) {
             mPhoto.setImageBitmap(flower.getPicture());
