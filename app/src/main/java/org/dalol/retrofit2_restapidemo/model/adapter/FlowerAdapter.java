@@ -54,7 +54,7 @@ public class FlowerAdapter extends RecyclerView.Adapter<FlowerAdapter.Holder> {
         Flower currFlower = mFlowers.get(position);
 
         holder.mName.setText(currFlower.getName());
-        holder.mPrice.setText("$" + Double.toString(currFlower.getPrice()));
+        holder.mPrice.setText(String.format("$%.2f", currFlower.getPrice()));
 
         if (currFlower.isFromDatabase()) {
             holder.mPhoto.setImageBitmap(currFlower.getPicture());
