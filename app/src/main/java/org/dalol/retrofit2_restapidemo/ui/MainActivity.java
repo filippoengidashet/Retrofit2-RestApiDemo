@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
 
         mDialog.show();
 
-        if (getNetworkAvailablility()) {
+        if (getNetworkAvailability()) {
             getFeed();
         } else {
             getFeedFromDatabase();
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
         });
     }
 
-    public boolean getNetworkAvailablility() {
+    public boolean getNetworkAvailability() {
         return Utils.isNetworkAvailable(getApplicationContext());
     }
 
