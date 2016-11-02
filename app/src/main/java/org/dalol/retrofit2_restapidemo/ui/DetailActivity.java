@@ -54,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
         if (flower.isFromDatabase()) {
             mPhoto.setImageBitmap(flower.getPicture());
         } else {
-            Picasso.with(getApplicationContext()).load("http://services.hanselandpetal.com/photos/" + flower.getPhoto()).into(mPhoto);
+            Picasso.with(getApplicationContext()).load(Constants.HTTP.BASE_URL + "/photos/" + flower.getPhoto()).into(mPhoto);
         }
     }
 
