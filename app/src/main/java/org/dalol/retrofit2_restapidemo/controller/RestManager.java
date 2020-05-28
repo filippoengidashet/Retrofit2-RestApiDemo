@@ -14,8 +14,8 @@ package org.dalol.retrofit2_restapidemo.controller;
 import org.dalol.retrofit2_restapidemo.model.callback.FlowerService;
 import org.dalol.retrofit2_restapidemo.model.helper.Constants;
 
-import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author Filippo Engidashet

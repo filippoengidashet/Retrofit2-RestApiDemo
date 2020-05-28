@@ -26,11 +26,14 @@ import java.io.ByteArrayOutputStream;
  */
 public class Utils {
 
-
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+        boolean available = false;
+        if (connectivityManager != null) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            available = networkInfo != null && networkInfo.isConnectedOrConnecting();
+        }
+        return available;
     }
 
     public static byte[] getPictureByteOfArray(Bitmap bitmap) {

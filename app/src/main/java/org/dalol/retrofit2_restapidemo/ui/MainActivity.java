@@ -16,14 +16,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.dalol.retrofit2_restapidemo.R;
 import org.dalol.retrofit2_restapidemo.controller.RestManager;
@@ -124,9 +125,9 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
         Call<List<Flower>> listCall = mManager.getFlowerService().getAllFlowers();
         listCall.enqueue(new Callback<List<Flower>>() {
             @Override
-            public void onResponse(Response<List<Flower>> response) {
+            public void onResponse(Call<List<Flower>> call, Response<List<Flower>> response) {
 
-                if (response.isSuccess()) {
+                if (response.isSuccessful()) {
                     List<Flower> flowerList = response.body();
 
                     for (int i = 0; i < flowerList.size(); i++) {
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements FlowerAdapter.Flo
             }
 
             @Override
-            public void onFailure(Throwable t) {
+            public void onFailure(Call<List<Flower>> call, Throwable t) {
                 mDialog.dismiss();
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }

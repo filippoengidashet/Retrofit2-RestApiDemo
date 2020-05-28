@@ -11,8 +11,6 @@
 
 package org.dalol.retrofit2_restapidemo.model.callback;
 
-import android.content.Context;
-
 import org.dalol.retrofit2_restapidemo.model.pojo.Flower;
 
 import java.util.List;

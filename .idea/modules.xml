@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-Retrofit2-RestApiDemo.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-Retrofit2-RestApiDemo.iml" group="Retrofit2-RestApiDemo" />
       <module fileurl="file://$PROJECT_DIR$/Retrofit2-RestApiDemo.iml" filepath="$PROJECT_DIR$/Retrofit2-RestApiDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Retrofit2-RestApiDemo-app.iml" filepath="$PROJECT_DIR$/app/Retrofit2-RestApiDemo-app.iml" group="Retrofit2-RestApiDemo/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
